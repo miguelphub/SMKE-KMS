@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Compras</title>
+  <link rel="stylesheet" href="CSS/kms.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="card">
+      <center>
+        <h1>ORDENES DE COMPRA</h1>
+        <p>Llena las casillas con los datos necesarios.</p>
+      </center>
+    </header>
+
+    <section class="card">
+      <center><h2>Información</h2></center>
+      <br />
+
+      <div class="grid">
+        <label>
+          PO #
+          <input id="po" type="text" inputmode="numeric" placeholder="Ej: 11511" />
+        </label>
+
+        <label>
+          FECHA DE PO
+          <input id="fechaPo" type="date" />
+        </label>
+
+        <label>
+          NECESITO LA PRODUCCIÓN
+          <input id="fechaProd" type="date" />
+        </label>
+
+        <label>
+          LUGAR DE ENTREGA
+          <input id="lugar" type="text" placeholder="PENDIENTE" />
+        </label>
+      </div>
+    </section>
+
+    <section class="card">
+      <center><h2>Datos de la orden</h2></center>
+
+      <div class="grid stylesTop">
+        <label class="buyBox">
+          ¿Qué vas a comprar?
+
+          <select id="compras" multiple size="4" class="hidden-select" aria-hidden="true" tabindex="-1">
+            <option value="heat_transfer" selected>Heat Transfer</option>
+            <option value="size_strip">Size Strip</option>
+            <option value="color_tag">Color Tag</option>
+            <option value="hang_tag">Hang Tag</option>
+          </select>
+
+          <div class="buyChoices" role="group" aria-label="Qué vas a comprar">
+            <label class="choiceItem">
+              <input id="buyHT" type="checkbox" value="heat_transfer" checked />
+              <span>Heat Transfer</span>
+            </label>
+
+            <label class="choiceItem">
+              <input id="buySS" type="checkbox" value="size_strip" />
+              <span>Size Strip</span>
+            </label>
+
+            <label class="choiceItem">
+              <input id="buyCT" type="checkbox" value="color_tag" />
+              <span>Color Tag</span>
+            </label>
+
+            <label class="choiceItem">
+              <input id="buyHG" type="checkbox" value="hang_tag" />
+              <span>Hang Tag</span>
+            </label>
+          </div>
+
+          <small>Puedes elegir 1 o varias opciones.</small>
+        </label>
+
+        <label class="qtyStylesBox">
+          CANTIDAD DE ESTILOS:
+          <input id="qtyStyles" type="number" min="1" max="20" step="1" placeholder="1" />
+          <small>Todos los estilos se colocarán en una misma hoja.</small>
+        </label>
+
+        <div class="styleNamesBox" id="styleNamesBox"></div>
+      </div>
+
+      <div id="stylesContainer"></div>
+    </section>
+
+    <section class="card">
+      <div class="actions">
+        <button id="download" class="btn primary" type="button">
+          Descargar Excel
+        </button>
+      </div>
+      <p class="hint">
+        Si eliges varios tipos a la vez, tu navegador puede pedir permiso para múltiples descargas en localhost.
+      </p>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/exceljs/dist/exceljs.min.js"></script>
+  <script src="JS/kms.js"></script>
+</body>
+</html>
