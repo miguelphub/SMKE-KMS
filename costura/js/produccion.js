@@ -92,6 +92,13 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+function setWorkbookMeta(workbook) {
+  workbook.creator = "Miguelnmms";
+  workbook.lastModifiedBy = "Miguelnmms";
+  workbook.created = new Date();
+  workbook.modified = new Date();
+}
+
 async function blobToDataURL(blob) {
   return await new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -227,6 +234,7 @@ function renderStyleCards(count) {
             <select id="approvalType_${index}">
               <option value="igualar" selected>Igualar PO</option>
               <option value="muestra">Se mandará muestra de tela</option>
+              <option value="pendiente">Pendiente muestra de tela o igualación</option>
             </select>
           </label>
 
@@ -240,7 +248,7 @@ function renderStyleCards(count) {
             <input id="matchColor_${index}" type="text" placeholder="Ej. CASTLEROCK" />
           </label>
 
-          <div class="paste-wrap">
+          <div class="paste-wrap paste-wrap--compact">
             <span class="paste-wrap__label">Imagen del item (pegar desde portapapeles)</span>
             <div class="paste-zone" id="pasteZone_${index}" tabindex="0" role="button" aria-label="Pega una imagen para el estilo ${index}">
               <div class="paste-zone__empty" id="pasteEmpty_${index}">
@@ -712,18 +720,16 @@ function styleRange(ws, startRow, startCol, endRow, endCol, callback) {
 
 function buildApprovalText(row, suffix) {
   if (row.approvalType === "muestra") {
-    return {
-      header: "SE MANDARÁ MUESTRA",
-      detail: "SE MANDARA MUESTRA DE TELA"
-    };
+    return "SE MANDARA MUESTRA DE TELA";
+  }
+
+  if (row.approvalType === "pendiente") {
+    return "PENDIENTE MUESTRA DE TELA O IGUALACIÓN.";
   }
 
   const po = row.matchPo || "00000";
   const color = (row.matchColor || row.color || "").toUpperCase();
-  return {
-    header: `IGUALAR AL MISMO PO: ${po}-${suffix}`,
-    detail: `IGUALAR AL MISMO COLOR DE LA ORDEN ${po}-${suffix} ${color}`.trim()
-  };
+  return `IGUALAR AL MISMO COLOR DE LA ORDEN ${po}-${suffix} ${color}`.trim();
 }
 
 function prepareSheetBase(ws, itemRowsCount, approvalRowsCount) {
@@ -771,12 +777,9 @@ function prepareSheetBase(ws, itemRowsCount, approvalRowsCount) {
 
   let cursor = approvalHeaderRow + 1;
   for (let i = 0; i < approvalRowsCount; i += 1) {
-    ws.getRow(cursor).height = 24;
-    ws.getRow(cursor + 1).height = 31.5;
-    ws.mergeCells(`B${cursor}:B${cursor + 1}`);
+    ws.getRow(cursor).height = 31.5;
     ws.mergeCells(`C${cursor}:E${cursor}`);
-    ws.mergeCells(`C${cursor + 1}:E${cursor + 1}`);
-    cursor += 2;
+    cursor += 1;
   }
 
   ws.getRow(cursor).height = 18;
@@ -938,21 +941,19 @@ function writeApproval(ws, item, layout) {
 
   let cursor = layout.approvalStartRow;
   item.rows.forEach((rowItem) => {
-    const approval = buildApprovalText(rowItem, item.suffix);
-    styleRange(ws, cursor, 2, cursor + 1, 5, (cell) => {
+    const approvalDetail = buildApprovalText(rowItem, item.suffix);
+    styleRange(ws, cursor, 2, cursor, 5, (cell) => {
       setBorder(cell);
       setFill(cell, "FFFFFFFF");
       setAlignment(cell);
     });
 
     setCell(ws, `B${cursor}`, rowItem.color || "");
-    setCell(ws, `C${cursor}`, approval.header);
-    setCell(ws, `C${cursor + 1}`, approval.detail);
+    setCell(ws, `C${cursor}`, approvalDetail);
 
     setFont(ws.getCell(`B${cursor}`), { size: 12 });
-    setFont(ws.getCell(`C${cursor}`), { size: 12, bold: true });
-    setFont(ws.getCell(`C${cursor + 1}`), { size: 10, bold: true, color: { argb: "FFFF0000" } });
-    cursor += 2;
+    setFont(ws.getCell(`C${cursor}`), { size: 10, bold: true, color: { argb: "FFFF0000" } });
+    cursor += 1;
   });
 }
 
@@ -986,8 +987,7 @@ async function addImages(workbook, ws, item, layout, headerBase64) {
 
 async function buildWorkbook(item, data, headerBase64) {
   const workbook = new ExcelJS.Workbook();
-  workbook.creator = "ChatGPT";
-  workbook.created = new Date();
+  setWorkbookMeta(workbook);
 
   const ws = workbook.addWorksheet(item.suffix);
   const layout = prepareSheetBase(ws, item.rows.length, item.rows.length);

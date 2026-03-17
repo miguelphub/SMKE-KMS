@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SMIKE | Costura · Mobilon</title>
+  <link rel="stylesheet" href="../shared/theme.css" />
+  <link rel="stylesheet" href="../shared/produccion.css" />
+  <link rel="stylesheet" href="../shared/mobilon.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body class="app-body">
+  <div class="app-background" aria-hidden="true">
+    <div class="bg-grid"></div>
+    <div class="bg-noise"></div>
+    <div class="bg-orb orb-a"></div>
+    <div class="bg-orb orb-b"></div>
+    <div class="bg-orb orb-c"></div>
+  </div>
+
+  <main class="page-shell prod-shell">
+    <a href="inicio.html" class="back-button"><i class="fa-solid fa-arrow-left"></i> Volver a Costura</a>
+
+    <section class="glass-panel prod-hero">
+      <div class="panel-inner prod-hero__inner">
+        <div class="prod-copy">
+          <span class="eyebrow-pill"><i class="fa-solid fa-ribbon"></i> Costura · Mobilon</span>
+          <h1 class="section-heading">Orden de compra de Mobilon</h1>
+          <p class="section-copy">
+            Genera la orden con la plantilla de Mobilon, elige proveedor, pega la imagen del item y el sistema redondea la compra al siguiente múltiplo de <strong>1,000 yardas</strong>.
+          </p>
+
+          <div class="hero-tags">
+            <span><i class="fa-solid fa-file-excel"></i> Plantilla real</span>
+            <span><i class="fa-solid fa-building"></i> JCA / ARYEL</span>
+            <span><i class="fa-solid fa-arrow-up-9-1"></i> Múltiplos de 1,000</span>
+          </div>
+        </div>
+
+        <aside class="hero-rule">
+          <small>Regla principal</small>
+          <strong>Compra en miles</strong>
+          <p>
+            <b>SUMINISTROS ARYEL</b> usa <b>$0.0065</b> por yarda y <b>JCA</b> usa <b>$0.009</b>. Si la cantidad no cae exacta,
+            la orden se sube automáticamente al siguiente múltiplo de <b>1,000</b>.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="glass-panel prod-card">
+      <div class="card-header">
+        <h2>Información general</h2>
+        <p>La fecha de producción arranca con +7 días desde la fecha de PO. La orden se descarga como <strong>PO-MOB.xlsx</strong>.</p>
+      </div>
+
+      <div class="form-grid">
+        <label>
+          <span>PO #</span>
+          <input id="po" type="text" inputmode="numeric" placeholder="Ej. 11567" />
+        </label>
+
+        <label>
+          <span>Proveedor</span>
+          <select id="proveedor">
+            <option value="SUMINISTROS ARYEL" selected>SUMINISTROS ARYEL</option>
+            <option value="JCA">JCA</option>
+          </select>
+        </label>
+
+        <label>
+          <span>Fecha de PO</span>
+          <input id="fechaPo" type="date" />
+        </label>
+
+        <label>
+          <span>Necesito la producción</span>
+          <input id="fechaProd" type="date" />
+        </label>
+      </div>
+    </section>
+
+    <section class="glass-panel prod-card">
+      <div class="card-header">
+        <h2>Datos del item</h2>
+        <p>La descripción queda fija como <strong>MOBILON TAPE</strong>. Solo completas el style, color y la cantidad de yardas.</p>
+      </div>
+
+      <div class="mobilon-layout">
+        <div class="mobilon-main">
+          <div class="form-grid mobilon-grid">
+            <label>
+              <span>Style</span>
+              <input id="styleRef" type="text" placeholder="Ej. BLC524Y" />
+            </label>
+
+            <label>
+              <span>Color</span>
+              <input id="color" type="text" placeholder="Ej. CLEAR" />
+            </label>
+
+            <label>
+              <span>Yardas requeridas</span>
+              <input id="yardas" type="number" min="0" step="1" placeholder="Ej. 15000" />
+            </label>
+
+            <label>
+              <span>Qty order total</span>
+              <input id="qtyOrder" type="text" readonly placeholder="0" />
+            </label>
+          </div>
+
+          <div class="mobilon-note">
+            <i class="fa-solid fa-circle-info"></i>
+            <span>Si escribes una cantidad que no cae exacta, la orden se sube al siguiente múltiplo de 1,000.</span>
+          </div>
+        </div>
+
+        <div class="paste-wrap paste-wrap--mobilon">
+          <span class="paste-wrap__label">Imagen del item (pegar desde portapapeles)</span>
+          <div class="paste-zone" id="pasteZone" tabindex="0" role="button" aria-label="Pega la imagen del item">
+            <div class="paste-zone__empty" id="pasteEmpty">
+              <i class="fa-regular fa-image"></i>
+              <strong>Pega aquí la imagen</strong>
+              <small>Haz clic en esta zona y usa Ctrl + V</small>
+            </div>
+            <img id="pastePreview" class="paste-zone__preview hidden" alt="Vista previa del item" />
+            <button id="clearPaste" class="paste-zone__clear hidden" type="button">Limpiar</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="summary-grid mobilon-summary">
+      <article class="summary-card">
+        <span>Proveedor</span>
+        <strong id="sumProveedor">SUMINISTROS ARYEL</strong>
+        <small>Precio configurado según el proveedor.</small>
+      </article>
+      <article class="summary-card">
+        <span>Precio por yarda</span>
+        <strong id="sumPrecio">$0.0065</strong>
+        <small>Se usa directamente en el Excel.</small>
+      </article>
+      <article class="summary-card">
+        <span>Qty order total</span>
+        <strong id="sumQty">0</strong>
+        <small>Redondeado al siguiente múltiplo de 1,000.</small>
+      </article>
+      <article class="summary-card summary-card-accent">
+        <span>Monto total</span>
+        <strong id="sumAmount">$0.00</strong>
+        <small>Yardas compradas × precio por yarda.</small>
+      </article>
+    </section>
+
+    <section class="glass-panel prod-card">
+      <div class="actions">
+        <button id="downloadBtn" class="btn-primary" type="button">
+          <i class="fa-solid fa-file-arrow-down"></i>
+          Descargar Excel
+        </button>
+      </div>
+      <p class="hint">
+        El archivo se descarga como <strong>PO-MOB.xlsx</strong> y se rellena sobre la plantilla original de Mobilon.
+      </p>
+      <p class="message" id="message"></p>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/exceljs/dist/exceljs.min.js"></script>
+  <script src="js/mobilon.js"></script>
+</body>
+</html>

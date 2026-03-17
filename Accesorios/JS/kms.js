@@ -80,6 +80,13 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+function setWorkbookMeta(workbook) {
+  workbook.creator = "Miguelnmms";
+  workbook.lastModifiedBy = "Miguelnmms";
+  workbook.created = new Date();
+  workbook.modified = new Date();
+}
+
 function forceDownload(blob, filename) {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
@@ -1198,6 +1205,7 @@ function addPastedImageToHT(ws, st, dataStart, dataEnd) {
 // =========================
 async function buildHeatTransferWorkbook(payload) {
   const wb = new ExcelJS.Workbook();
+  setWorkbookMeta(wb);
   wb.calcProperties.fullCalcOnLoad = true;
 
   const ws = wb.addWorksheet("HT");
@@ -1235,6 +1243,7 @@ async function buildHeatTransferWorkbook(payload) {
 
 async function buildSizeStripWorkbook(payload) {
   const wb = new ExcelJS.Workbook();
+  setWorkbookMeta(wb);
   wb.calcProperties.fullCalcOnLoad = true;
 
   const ws = wb.addWorksheet("SS");
@@ -1272,6 +1281,7 @@ async function buildSizeStripWorkbook(payload) {
 
 async function buildColorTagWorkbook(payload) {
   const wb = new ExcelJS.Workbook();
+  setWorkbookMeta(wb);
   wb.calcProperties.fullCalcOnLoad = true;
 
   const ws = wb.addWorksheet("CL");
@@ -1317,6 +1327,7 @@ async function buildColorTagWorkbook(payload) {
 
 async function buildHangTagWorkbook(payload) {
   const wb = new ExcelJS.Workbook();
+  setWorkbookMeta(wb);
   wb.calcProperties.fullCalcOnLoad = true;
 
   const ws = wb.addWorksheet("TAG");

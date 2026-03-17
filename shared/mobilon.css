@@ -1,0 +1,55 @@
+
+.mobilon-layout{
+  display:grid;
+  grid-template-columns:minmax(0, 1.2fr) minmax(280px, .8fr);
+  gap:18px;
+  align-items:start;
+}
+
+.mobilon-main{
+  display:grid;
+  gap:14px;
+}
+
+.mobilon-grid{
+  align-items:start;
+}
+
+.mobilon-note{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  padding:14px 16px;
+  border-radius:18px;
+  border:1px solid rgba(129,160,230,.14);
+  background:rgba(12,20,36,.58);
+  color:var(--muted-strong);
+}
+
+.mobilon-note i{
+  color:#9ebcff;
+  margin-top:2px;
+}
+
+.paste-wrap--mobilon{
+  align-self:stretch;
+}
+
+.paste-wrap--mobilon .paste-zone{
+  min-height:210px;
+}
+
+.mobilon-summary{
+  position:relative;
+  z-index:1;
+}
+
+@media (max-width: 960px){
+  .mobilon-layout{
+    grid-template-columns:1fr;
+  }
+
+  .paste-wrap--mobilon .paste-zone{
+    min-height:150px;
+  }
+}
