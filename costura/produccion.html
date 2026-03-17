@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SMIKE | Costura · Compra de hilo</title>
+  <link rel="stylesheet" href="../shared/theme.css" />
+  <link rel="stylesheet" href="../shared/produccion.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body class="app-body">
+  <div class="app-background" aria-hidden="true">
+    <div class="bg-grid"></div>
+    <div class="bg-noise"></div>
+    <div class="bg-orb orb-a"></div>
+    <div class="bg-orb orb-b"></div>
+    <div class="bg-orb orb-c"></div>
+  </div>
+
+  <main class="page-shell prod-shell">
+    <a href="inicio.html" class="back-button"><i class="fa-solid fa-arrow-left"></i> Volver a Costura</a>
+
+    <section class="glass-panel prod-hero">
+      <div class="panel-inner prod-hero__inner">
+        <div class="prod-copy">
+          <span class="eyebrow-pill"><i class="fa-solid fa-spool"></i> Costura · Hilo</span>
+          <h1 class="section-heading">Compra de hilo TH / THX</h1>
+          <p class="section-copy">
+            Esta sección arma la orden de compra de hilo con varios estilos dentro de una misma hoja, reparte
+            automáticamente el 70% para <strong>TEX 27</strong> y el 30% para <strong>40/2</strong>, y aplica la lógica
+            del mínimo para que el Excel no se ponga creativo a las 3 de la mañana.
+          </p>
+
+          <div class="hero-tags">
+            <span><i class="fa-solid fa-layer-group"></i> Varios estilos</span>
+            <span><i class="fa-solid fa-bolt"></i> 70 / 30 automático</span>
+            <span><i class="fa-solid fa-file-excel"></i> TH / THX listos</span>
+          </div>
+        </div>
+
+        <aside class="hero-rule">
+          <small>Regla principal</small>
+          <strong>Proveedor fijo</strong>
+          <p>
+            <b>TEXTILES BYCEL,S.A.</b> siempre queda colocado en la orden. Si <b>TH</b> cae en mínimo,
+            se genera solo <b>TH</b> en <b>2,500 MTS</b> con mínimo de <b>60</b>; en compra normal se generan
+            <b>TH</b> y <b>THX</b> en <b>5,000 MTS</b>.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="glass-panel prod-card">
+      <div class="card-header">
+        <h2>Información general</h2>
+        <p>La fecha de producción arranca con +7 días desde la fecha de PO, pero puedes moverla cuando haga falta.</p>
+      </div>
+
+      <div class="form-grid">
+        <label>
+          <span>PO #</span>
+          <input id="po" type="text" inputmode="numeric" placeholder="Ej. 11572" />
+        </label>
+
+        <label>
+          <span>Fecha de PO</span>
+          <input id="fechaPo" type="date" />
+        </label>
+
+        <label>
+          <span>Necesito la producción</span>
+          <input id="fechaProd" type="date" />
+        </label>
+
+        <label>
+          <span>Lugar de entrega</span>
+          <input id="lugar" type="text" placeholder="PENDIENTE" />
+        </label>
+      </div>
+    </section>
+
+    <section class="glass-panel prod-card">
+      <div class="card-header">
+        <h2>Estilos de la orden</h2>
+        <p>Todos los estilos válidos se colocan dentro del mismo archivo. Cada estilo tiene su propia vista de cálculo y puedes mostrarla solo cuando te haga falta.</p>
+      </div>
+
+      <div class="styles-top-grid">
+        <label class="styles-count-box">
+          <span>Cantidad de estilos</span>
+          <input id="qtyStyles" type="number" min="1" max="20" step="1" value="1" placeholder="1" />
+          <small>Empieza en 1 por defecto. Puedes borrarlo para escribir otro número sin que te lo peleen los duendes del input.</small>
+        </label>
+      </div>
+
+      <div id="stylesContainer" class="styles-container"></div>
+    </section>
+
+    <section class="glass-panel prod-card">
+      <div class="actions">
+        <button id="downloadBtn" class="btn-primary" type="button">
+          <i class="fa-solid fa-file-arrow-down"></i>
+          Descargar Excel
+        </button>
+      </div>
+      <p class="hint">
+        Regla aplicada: si <strong>TH</strong> cae en mínimo, se genera solo <strong>TH</strong> en <strong>2,500 MTS</strong>
+        con mínimo de <strong>60</strong>. Si no cae en mínimo, se generan <strong>TH</strong> y <strong>THX</strong>
+        en <strong>5,000 MTS</strong>.
+      </p>
+      <p class="message" id="message"></p>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/exceljs/dist/exceljs.min.js"></script>
+  <script src="js/produccion.js"></script>
+</body>
+</html>

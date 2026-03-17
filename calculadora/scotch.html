@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SMIKE | Scotch</title>
+  <link rel="stylesheet" href="../shared/theme.css" />
+  <link rel="stylesheet" href="../shared/forms.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body class="app-body">
+  <div class="app-background" aria-hidden="true">
+    <div class="bg-grid"></div>
+    <div class="bg-noise"></div>
+    <div class="bg-orb orb-a"></div>
+    <div class="bg-orb orb-b"></div>
+    <div class="bg-orb orb-c"></div>
+  </div>
+
+  <main class="page-shell tool-shell">
+    <a href="inicio.html" class="back-button"><i class="fa-solid fa-arrow-left"></i> Volver a calculadoras</a>
+
+    <section class="glass-panel tool-card">
+      <header class="tool-header">
+        <span class="eyebrow-pill"><i class="fa-solid fa-tape"></i> Cálculo de Scotch</span>
+        <div>
+          <h1 class="section-heading">Scotch</h1>
+          <p class="section-copy">Ingresa la cantidad de bolsas y el consumo por bolsa para calcular el total de cinta y los rollos necesarios.</p>
+        </div>
+      </header>
+
+      <div class="tool-grid">
+        <div class="field">
+          <label for="bolsas">Cantidad de bolsas</label>
+          <input type="number" id="bolsas" placeholder="Ej. 11508" inputmode="numeric" />
+        </div>
+
+        <div class="field">
+          <label for="cintaPorBolsa">Cantidad por bolsa (cm)</label>
+          <input type="number" id="cintaPorBolsa" value="6" inputmode="decimal" />
+        </div>
+
+        <div class="actions">
+          <button type="button" onclick="calcularRollos()">Calcular</button>
+        </div>
+      </div>
+
+      <div class="result-panel" id="resultado"></div>
+    </section>
+  </main>
+
+  <script src="js/scotch.js"></script>
+</body>
+</html>

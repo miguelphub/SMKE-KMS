@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SMIKE | Calculadoras</title>
+  <link rel="stylesheet" href="../shared/theme.css" />
+  <link rel="stylesheet" href="../shared/home.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body class="app-body">
+  <div class="app-background" aria-hidden="true">
+    <div class="bg-grid"></div>
+    <div class="bg-noise"></div>
+    <div class="bg-orb orb-a"></div>
+    <div class="bg-orb orb-b"></div>
+    <div class="bg-orb orb-c"></div>
+    <div class="bg-particles" id="bgParticles"></div>
+  </div>
+
+  <main class="page-shell">
+    <a href="../inicio.html" class="back-button"><i class="fa-solid fa-arrow-left"></i> Volver al inicio</a>
+
+    <div class="dashboard-shell">
+      <section class="glass-panel dashboard-hero">
+        <div class="panel-inner hero-intro">
+          <span class="eyebrow-pill"><i class="fa-solid fa-calculator"></i> Panel de cálculo</span>
+          <div class="dashboard-copy">
+            <h1 class="section-heading">Calculadoras operativas</h1>
+            <p class="section-copy">
+              Aquí viven las calculadoras del sistema. La compra de hilo ya quedó separada en Costura para no mezclar cálculo con producción.
+            </p>
+          </div>
+          <div class="hero-meta">
+            <span class="meta-chip"><i class="fa-solid fa-gauge-high"></i> Acceso rápido</span>
+            <span class="meta-chip"><i class="fa-solid fa-layer-group"></i> Estructura más limpia</span>
+            <span class="meta-chip"><i class="fa-solid fa-table-cells-large"></i> Mejor lectura</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="dashboard-grid" aria-label="Calculadoras disponibles">
+        <a class="nav-card accent-mix" href="hilo.html">
+          <div class="nav-card__head">
+            <span class="nav-card__icon"><i class="fa-solid fa-thread"></i></span>
+            <span class="nav-card__arrow"><i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+          <div class="nav-card__body">
+            <h2 class="nav-card__title">Hilo</h2>
+            <p class="nav-card__text">La calculadora principal con tabla de procesos, pérdida y total de thread.</p>
+          </div>
+          <div class="nav-card__chips">
+            <span>Thread 1</span>
+            <span>Thread 2</span>
+            <span>Total</span>
+          </div>
+        </a>
+
+        <a class="nav-card accent-blue" href="mob.html">
+          <div class="nav-card__head">
+            <span class="nav-card__icon"><i class="fa-solid fa-ruler-combined"></i></span>
+            <span class="nav-card__arrow"><i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+          <div class="nav-card__body">
+            <h2 class="nav-card__title">Mobilon</h2>
+            <p class="nav-card__text">Convierte consumo por prenda a yardas y calcula la cantidad requerida.</p>
+          </div>
+          <div class="nav-card__chips">
+            <span>Yardas</span>
+            <span>Bolsas</span>
+          </div>
+        </a>
+
+        <a class="nav-card accent-cyan" href="scotch.html">
+          <div class="nav-card__head">
+            <span class="nav-card__icon"><i class="fa-solid fa-tape"></i></span>
+            <span class="nav-card__arrow"><i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+          <div class="nav-card__body">
+            <h2 class="nav-card__title">Scotch</h2>
+            <p class="nav-card__text">Obtén el total de cinta y la cantidad de rollos sin perder tiempo.</p>
+          </div>
+          <div class="nav-card__chips">
+            <span>Rollos</span>
+            <span>Consumo</span>
+          </div>
+        </a>
+
+        <a class="nav-card accent-pink" href="sellador.html">
+          <div class="nav-card__head">
+            <span class="nav-card__icon"><i class="fa-solid fa-box"></i></span>
+            <span class="nav-card__arrow"><i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+          <div class="nav-card__body">
+            <h2 class="nav-card__title">Sellador</h2>
+            <p class="nav-card__text">Calcula cajas, consumo por forma de sellado y cantidad requerida.</p>
+          </div>
+          <div class="nav-card__chips">
+            <span>Empaque</span>
+            <span>Metros</span>
+          </div>
+        </a>
+      </section>
+    </div>
+  </main>
+
+  <script src="../shared/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SMIKE | Mobilon</title>
+  <link rel="stylesheet" href="../shared/theme.css" />
+  <link rel="stylesheet" href="../shared/forms.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body class="app-body">
+  <div class="app-background" aria-hidden="true">
+    <div class="bg-grid"></div>
+    <div class="bg-noise"></div>
+    <div class="bg-orb orb-a"></div>
+    <div class="bg-orb orb-b"></div>
+    <div class="bg-orb orb-c"></div>
+  </div>
+
+  <main class="page-shell tool-shell">
+    <a href="inicio.html" class="back-button"><i class="fa-solid fa-arrow-left"></i> Volver a calculadoras</a>
+
+    <section class="glass-panel tool-card">
+      <header class="tool-header">
+        <span class="eyebrow-pill"><i class="fa-solid fa-ruler-combined"></i> Cálculo de Mobilon</span>
+        <div>
+          <h1 class="section-heading">Mobilon</h1>
+          <p class="section-copy">Ingresa la cantidad de prendas y el consumo por pieza para obtener el total en yardas y la cantidad requerida.</p>
+        </div>
+      </header>
+
+      <div class="tool-grid">
+        <div class="field">
+          <label for="piezas">Cantidad de prendas</label>
+          <input type="number" id="piezas" inputmode="numeric" placeholder="Ej. 1200" />
+        </div>
+
+        <div class="field">
+          <label for="consumo">Consumo por prenda (cm)</label>
+          <input type="number" id="consumo" value="30" inputmode="decimal" placeholder="0" />
+        </div>
+
+        <div class="field full">
+          <label for="totalYardas">Total de yardas requeridas</label>
+          <input type="number" id="totalYardas" readonly />
+        </div>
+
+        <div class="actions">
+          <button type="button" onclick="calcularMobilon()">Calcular</button>
+        </div>
+      </div>
+
+      <div class="result-panel" id="resultado"></div>
+    </section>
+  </main>
+
+  <script src="js/mob.js"></script>
+</body>
+</html>

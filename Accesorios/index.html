@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SMIKE | Accesorios</title>
+  <link rel="stylesheet" href="../shared/theme.css" />
+  <link rel="stylesheet" href="../shared/accessories.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body class="app-body">
+  <div class="app-background" aria-hidden="true">
+    <div class="bg-grid"></div>
+    <div class="bg-noise"></div>
+    <div class="bg-orb orb-a"></div>
+    <div class="bg-orb orb-b"></div>
+    <div class="bg-orb orb-c"></div>
+  </div>
+
+  <main class="wrap">
+    <a href="../inicio.html" class="back-button top-back"><i class="fa-solid fa-arrow-left"></i> Volver al inicio</a>
+
+    <section class="card hero-card">
+      <div class="hero-intro">
+        <span class="eyebrow-pill"><i class="fa-solid fa-tags"></i> Generador de accesorios</span>
+        <h1>Órdenes de compra</h1>
+        <p>
+          Llena las casillas, genera tus archivos y descarga los Excels listos. El diseño ahora sigue la misma línea
+          visual del cálculo de hilo para que todo se sienta parte del mismo sistema y no un zoológico de estilos.
+        </p>
+
+        <div class="hero-chips">
+          <span><i class="fa-solid fa-file-excel"></i> ExcelJS</span>
+          <span><i class="fa-solid fa-layer-group"></i> Varias compras</span>
+          <span><i class="fa-solid fa-mobile-screen-button"></i> Mejor en móvil</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Información general</h2>
+
+      <div class="grid">
+        <label>
+          PO #
+          <input id="po" type="text" inputmode="numeric" placeholder="Ej: 11511" />
+        </label>
+
+        <label>
+          FECHA DE PO
+          <input id="fechaPo" type="date" />
+        </label>
+
+        <label>
+          NECESITO LA PRODUCCIÓN
+          <input id="fechaProd" type="date" />
+        </label>
+
+        <label>
+          LUGAR DE ENTREGA
+          <input id="lugar" type="text" placeholder="PENDIENTE" />
+        </label>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Datos de la orden</h2>
+
+      <div class="grid stylesTop">
+        <label class="buyBox">
+          ¿Qué vas a comprar?
+
+          <select id="compras" multiple size="4" class="hidden-select" aria-hidden="true" tabindex="-1">
+            <option value="heat_transfer" selected>Heat Transfer</option>
+            <option value="size_strip">Size Strip</option>
+            <option value="color_tag">Color Tag</option>
+            <option value="hang_tag">Hang Tag</option>
+          </select>
+
+          <div class="buyChoices" role="group" aria-label="Qué vas a comprar">
+            <label class="choiceItem">
+              <input id="buyHT" type="checkbox" value="heat_transfer" checked />
+              <span>Heat Transfer</span>
+            </label>
+
+            <label class="choiceItem">
+              <input id="buySS" type="checkbox" value="size_strip" />
+              <span>Size Strip</span>
+            </label>
+
+            <label class="choiceItem">
+              <input id="buyCT" type="checkbox" value="color_tag" />
+              <span>Color Tag</span>
+            </label>
+
+            <label class="choiceItem">
+              <input id="buyHG" type="checkbox" value="hang_tag" />
+              <span>Hang Tag</span>
+            </label>
+          </div>
+
+          <small>Puedes elegir una o varias opciones.</small>
+        </label>
+
+        <label class="qtyStylesBox">
+          CANTIDAD DE ESTILOS
+          <input id="qtyStyles" type="number" min="1" max="20" step="1" placeholder="1" />
+          <small>Todos los estilos se colocarán en una misma hoja.</small>
+        </label>
+
+        <div class="styleNamesBox" id="styleNamesBox"></div>
+      </div>
+
+      <div id="stylesContainer"></div>
+    </section>
+
+    <section class="card">
+      <div class="actions">
+        <button id="download" class="btn primary" type="button">Descargar Excel</button>
+      </div>
+      <p class="hint">
+        Color Tag y Hang Tag ahora aceptan cantidad manual por estilo. Si eliges varios tipos a la vez,
+        tu navegador puede pedir permiso para múltiples descargas.
+      </p>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/exceljs/dist/exceljs.min.js"></script>
+  <script src="JS/kms.js"></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SMIKE | Sellador</title>
+  <link rel="stylesheet" href="../shared/theme.css" />
+  <link rel="stylesheet" href="../shared/forms.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body class="app-body">
+  <div class="app-background" aria-hidden="true">
+    <div class="bg-grid"></div>
+    <div class="bg-noise"></div>
+    <div class="bg-orb orb-a"></div>
+    <div class="bg-orb orb-b"></div>
+    <div class="bg-orb orb-c"></div>
+  </div>
+
+  <main class="page-shell tool-shell">
+    <a href="inicio.html" class="back-button"><i class="fa-solid fa-arrow-left"></i> Volver a calculadoras</a>
+
+    <section class="glass-panel tool-card">
+      <header class="tool-header">
+        <span class="eyebrow-pill"><i class="fa-solid fa-box"></i> Cálculo de Sellador</span>
+        <div>
+          <h1 class="section-heading">Sellador</h1>
+          <p class="section-copy">Completa los datos de empaque y obtén el número de cajas y selladores necesarios según la forma de sellado.</p>
+        </div>
+      </header>
+
+      <div class="tool-grid">
+        <div class="field">
+          <label for="piezas">Cantidad de pcs</label>
+          <input type="number" id="piezas" inputmode="numeric" />
+        </div>
+
+        <div class="field">
+          <label for="porCaja">Pcs por caja</label>
+          <input type="number" id="porCaja" inputmode="numeric" />
+        </div>
+
+        <div class="field">
+          <label for="largo">Largo de la caja (pulgadas)</label>
+          <input type="number" id="largo" inputmode="decimal" />
+        </div>
+
+        <div class="field">
+          <label for="ancho">Ancho de la caja (pulgadas)</label>
+          <input type="number" id="ancho" inputmode="decimal" />
+        </div>
+
+        <div class="field">
+          <label for="forma">Sellado de caja</label>
+          <select id="forma">
+            <option value="Normal">Normal</option>
+            <option value="H">H</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="cajas">Total de cajas</label>
+          <input type="number" id="cajas" readonly />
+        </div>
+
+        <div class="actions">
+          <button type="button" onclick="calcularSelladores()">Calcular</button>
+        </div>
+      </div>
+
+      <div class="result-panel" id="resultado"></div>
+    </section>
+  </main>
+
+  <script src="js/sellador.js"></script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SMIKE | Consumo de hilo</title>
+  <link rel="stylesheet" href="../shared/theme.css" />
+  <link rel="stylesheet" href="../shared/hilo.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body class="app-body">
+  <div class="app-background" aria-hidden="true">
+    <div class="bg-grid"></div>
+    <div class="bg-noise"></div>
+    <div class="bg-orb orb-a"></div>
+    <div class="bg-orb orb-b"></div>
+    <div class="bg-orb orb-c"></div>
+  </div>
+
+  <main class="page-shell hilo-shell">
+    <a href="inicio.html" class="back-button"><i class="fa-solid fa-arrow-left"></i> Volver a calculadoras</a>
+
+    <section class="glass-panel hilo-hero">
+      <div class="panel-inner">
+        <div>
+          <span class="eyebrow-pill"><i class="fa-solid fa-thread"></i> Calculadora textil</span>
+          <h1 class="section-heading" style="margin-top:14px;">Consumo de hilo</h1>
+          <p class="section-copy">
+            Ingresa las medidas netas en centímetros para cada proceso y el sistema calcula
+            el consumo con pérdida, el total en centímetros y el total en metros.
+          </p>
+        </div>
+
+        <div class="hero-badge">
+          <span>Talla activa</span>
+          <strong id="sizePreview">M</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="glass-panel hilo-card">
+      <div class="card-header">
+        <h2>Datos de referencia</h2>
+        <p>Estos datos sirven para identificar la ficha. No alteran el cálculo.</p>
+      </div>
+
+      <div class="form-grid">
+        <label>
+          <span>Buyer</span>
+          <input type="text" id="buyer" placeholder="Ej. Old Navy" />
+        </label>
+
+        <label>
+          <span>S/#</span>
+          <input type="text" id="styleNo" placeholder="Ej. 11507" />
+        </label>
+
+        <label>
+          <span>Fecha</span>
+          <input type="date" id="date" />
+        </label>
+
+        <label>
+          <span>Div./Description</span>
+          <input type="text" id="description" placeholder="Descripción" />
+        </label>
+
+        <label>
+          <span>Order Q'ty</span>
+          <input type="number" id="orderQty" min="0" step="1" placeholder="0" />
+        </label>
+
+        <label>
+          <span>Team/Charger</span>
+          <input type="text" id="team" placeholder="Responsable" />
+        </label>
+
+        <label>
+          <span>Talla</span>
+          <input type="text" id="size" value="M" maxlength="10" />
+        </label>
+
+        <label>
+          <span>Pérdida (%)</span>
+          <input type="number" id="lossPercent" value="10" min="0" step="0.1" />
+        </label>
+
+        <label>
+          <span>Thread 2 (m)</span>
+          <input type="number" id="thread2" value="1" min="0" step="0.01" />
+        </label>
+      </div>
+    </section>
+
+    <section class="summary-grid">
+      <article class="summary-card">
+        <span>Thread 1</span>
+        <strong id="thread1Meters">0.00</strong>
+        <small>metros</small>
+      </article>
+
+      <article class="summary-card">
+        <span>Thread 2</span>
+        <strong id="thread2Meters">1.00</strong>
+        <small>metros</small>
+      </article>
+
+      <article class="summary-card summary-card-accent">
+        <span>Thread total</span>
+        <strong id="threadTotalMeters">1.00</strong>
+        <small>metros</small>
+      </article>
+    </section>
+
+    <section class="glass-panel hilo-card">
+      <div class="card-header card-header-inline">
+        <div>
+          <h2>Consumo de talla <span id="sizeTitle">M</span></h2>
+          <p>Completa únicamente la columna verde. Lo demás se calcula solo.</p>
+        </div>
+
+        <div class="action-row">
+          <button class="btn-secondary" id="fillExampleBtn" type="button">Cargar ejemplo</button>
+          <button class="btn-ghost" id="clearBtn" type="button">Limpiar</button>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Process</th>
+              <th>Stitch name</th>
+              <th>ISO</th>
+              <th>Width</th>
+              <th>Multiful</th>
+              <th class="th-net">Net thread length<br><span>CENTÍMETROS</span></th>
+              <th>Thread length w/multiful</th>
+              <th>Consumption thread (w/loss)</th>
+              <th>Remark</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+          <tfoot>
+            <tr>
+              <td colspan="6" class="tfoot-label">Totales</td>
+              <td id="totalNet">0.00</td>
+              <td id="totalWithMultiful">0.00</td>
+              <td id="totalConsumption">0.00</td>
+              <td>-</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <template id="rowTemplate">
+    <tr>
+      <td class="col-index"></td>
+      <td class="col-process"></td>
+      <td class="col-stitch"></td>
+      <td class="col-iso"></td>
+      <td class="col-width"></td>
+      <td class="col-multiful"></td>
+      <td class="col-net">
+        <input type="number" class="net-input" min="0" step="0.01" placeholder="0.00" />
+      </td>
+      <td class="col-with-multiful">0.00</td>
+      <td class="col-consumption">0.00</td>
+      <td class="col-remark"></td>
+    </tr>
+  </template>
+
+  <script src="js/hilo.js"></script>
+</body>
+</html>
