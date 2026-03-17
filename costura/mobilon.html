@@ -27,22 +27,23 @@
           <span class="eyebrow-pill"><i class="fa-solid fa-ribbon"></i> Costura · Mobilon</span>
           <h1 class="section-heading">Orden de compra de Mobilon</h1>
           <p class="section-copy">
-            Genera la orden con la plantilla de Mobilon, elige proveedor, pega la imagen del item y el sistema redondea la compra al siguiente múltiplo de <strong>1,000 yardas</strong>.
+            Genera una sola orden con <strong>varios estilos</strong>, usando la plantilla real de Mobilon. El proveedor define el precio por yarda y cada estilo se
+            redondea automáticamente al siguiente múltiplo de <strong>1,000</strong>.
           </p>
 
           <div class="hero-tags">
-            <span><i class="fa-solid fa-file-excel"></i> Plantilla real</span>
+            <span><i class="fa-solid fa-layer-group"></i> Varios estilos</span>
             <span><i class="fa-solid fa-building"></i> JCA / ARYEL</span>
-            <span><i class="fa-solid fa-arrow-up-9-1"></i> Múltiplos de 1,000</span>
+            <span><i class="fa-solid fa-arrow-up-9-1"></i> Compra en miles</span>
           </div>
         </div>
 
         <aside class="hero-rule">
           <small>Regla principal</small>
-          <strong>Compra en miles</strong>
+          <strong>Color fijo</strong>
           <p>
-            <b>SUMINISTROS ARYEL</b> usa <b>$0.0065</b> por yarda y <b>JCA</b> usa <b>$0.009</b>. Si la cantidad no cae exacta,
-            la orden se sube automáticamente al siguiente múltiplo de <b>1,000</b>.
+            La descripción siempre queda como <b>MOBILON TAPE</b> y el color siempre se coloca como <b>CLEAR</b>.
+            Solo llenas <b>style</b>, <b>yardas requeridas</b> y pegas la imagen de cada estilo.
           </p>
         </aside>
       </div>
@@ -82,76 +83,25 @@
 
     <section class="glass-panel prod-card">
       <div class="card-header">
-        <h2>Datos del item</h2>
-        <p>La descripción queda fija como <strong>MOBILON TAPE</strong>. Solo completas el style, color y la cantidad de yardas.</p>
+        <h2>Estilos de la orden</h2>
+        <p>Todos los estilos válidos se colocan dentro del mismo archivo. El color queda fijo como <strong>CLEAR</strong> y la descripción queda fija como <strong>MOBILON TAPE</strong>.</p>
       </div>
 
-      <div class="mobilon-layout">
-        <div class="mobilon-main">
-          <div class="form-grid mobilon-grid">
-            <label>
-              <span>Style</span>
-              <input id="styleRef" type="text" placeholder="Ej. BLC524Y" />
-            </label>
+      <div class="styles-top-grid mobilon-top-grid">
+        <label class="styles-count-box">
+          <span>Cantidad de estilos</span>
+          <input id="qtyStyles" type="number" min="1" max="20" step="1" value="1" placeholder="1" />
+          <small>Empieza en 1 por defecto. Puedes subirlo para agregar más estilos en la misma hoja.</small>
+        </label>
 
-            <label>
-              <span>Color</span>
-              <input id="color" type="text" placeholder="Ej. CLEAR" />
-            </label>
-
-            <label>
-              <span>Yardas requeridas</span>
-              <input id="yardas" type="number" min="0" step="1" placeholder="Ej. 15000" />
-            </label>
-
-            <label>
-              <span>Qty order total</span>
-              <input id="qtyOrder" type="text" readonly placeholder="0" />
-            </label>
-          </div>
-
-          <div class="mobilon-note">
-            <i class="fa-solid fa-circle-info"></i>
-            <span>Si escribes una cantidad que no cae exacta, la orden se sube al siguiente múltiplo de 1,000.</span>
-          </div>
-        </div>
-
-        <div class="paste-wrap paste-wrap--mobilon">
-          <span class="paste-wrap__label">Imagen del item (pegar desde portapapeles)</span>
-          <div class="paste-zone" id="pasteZone" tabindex="0" role="button" aria-label="Pega la imagen del item">
-            <div class="paste-zone__empty" id="pasteEmpty">
-              <i class="fa-regular fa-image"></i>
-              <strong>Pega aquí la imagen</strong>
-              <small>Haz clic en esta zona y usa Ctrl + V</small>
-            </div>
-            <img id="pastePreview" class="paste-zone__preview hidden" alt="Vista previa del item" />
-            <button id="clearPaste" class="paste-zone__clear hidden" type="button">Limpiar</button>
-          </div>
+        <div class="mobilon-provider-note">
+          <span>Precio por yarda</span>
+          <strong id="providerPriceLabel">$0.0065</strong>
+          <small>SUMINISTROS ARYEL = $0.0065 · JCA = $0.009</small>
         </div>
       </div>
-    </section>
 
-    <section class="summary-grid mobilon-summary">
-      <article class="summary-card">
-        <span>Proveedor</span>
-        <strong id="sumProveedor">SUMINISTROS ARYEL</strong>
-        <small>Precio configurado según el proveedor.</small>
-      </article>
-      <article class="summary-card">
-        <span>Precio por yarda</span>
-        <strong id="sumPrecio">$0.0065</strong>
-        <small>Se usa directamente en el Excel.</small>
-      </article>
-      <article class="summary-card">
-        <span>Qty order total</span>
-        <strong id="sumQty">0</strong>
-        <small>Redondeado al siguiente múltiplo de 1,000.</small>
-      </article>
-      <article class="summary-card summary-card-accent">
-        <span>Monto total</span>
-        <strong id="sumAmount">$0.00</strong>
-        <small>Yardas compradas × precio por yarda.</small>
-      </article>
+      <div id="stylesContainer" class="styles-container"></div>
     </section>
 
     <section class="glass-panel prod-card">
@@ -162,7 +112,7 @@
         </button>
       </div>
       <p class="hint">
-        El archivo se descarga como <strong>PO-MOB.xlsx</strong> y se rellena sobre la plantilla original de Mobilon.
+        Cada estilo se redondea por separado al siguiente múltiplo de <strong>1,000</strong>.
       </p>
       <p class="message" id="message"></p>
     </section>
