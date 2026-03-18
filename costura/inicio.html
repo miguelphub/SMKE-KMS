@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SMIKE | Costura</title>
+  <title>KMS Apparel | Costura</title>
+  <script>document.documentElement.dataset.theme = localStorage.getItem("kms-theme") || "light";</script>
   <link rel="stylesheet" href="../shared/theme.css" />
   <link rel="stylesheet" href="../shared/home.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -17,25 +18,41 @@
     <div class="bg-orb orb-c"></div>
     <div class="bg-particles" id="bgParticles"></div>
   </div>
+  <button class="theme-toggle" type="button" data-theme-toggle aria-label="Cambiar a modo oscuro">
+    <i class="fa-solid fa-moon"></i><span data-theme-label>Modo oscuro</span>
+  </button>
 
   <main class="page-shell">
     <a href="../inicio.html" class="back-button"><i class="fa-solid fa-arrow-left"></i> Volver al inicio</a>
 
     <div class="dashboard-shell">
       <section class="glass-panel dashboard-hero">
-        <div class="panel-inner hero-intro">
-          <span class="eyebrow-pill"><i class="fa-solid fa-scissors"></i> Centro de costura</span>
-          <div class="dashboard-copy">
-            <h1 class="section-heading">Compras de Costura</h1>
-            <p class="section-copy">
-              Aquí eliges qué compra quieres trabajar dentro de Costura. Ya está activa la compra de hilo y también la orden de Mobilon, cada una en su propia pantalla para que todo siga limpio, claro y sin revoltijo.
-            </p>
+        <div class="panel-inner hero-layout">
+          <div class="hero-brand">
+            <span class="eyebrow-pill"><i class="fa-solid fa-scissors"></i> Área de Costura</span>
+            <div class="dashboard-copy">
+              <h1 class="section-heading">Compras de Costura</h1>
+              <p class="section-copy">
+                Selecciona el tipo de compra que vas a trabajar. Cada flujo se mantiene separado para que la captura, la lógica de cálculo y la descarga del Excel sean más directas.
+              </p>
+            </div>
+            <div class="hero-meta">
+              <span class="meta-chip"><i class="fa-solid fa-spool"></i> Hilo TH / THX</span>
+              <span class="meta-chip"><i class="fa-solid fa-ribbon"></i> Mobilon</span>
+              <span class="meta-chip"><i class="fa-solid fa-file-excel"></i> Plantillas listas</span>
+            </div>
           </div>
-          <div class="hero-meta">
-            <span class="meta-chip"><i class="fa-solid fa-spool"></i> Hilo TH / THX</span>
-            <span class="meta-chip"><i class="fa-solid fa-layer-group"></i> Varios estilos</span>
-            <span class="meta-chip"><i class="fa-solid fa-mobile-screen-button"></i> Responsive</span>
-          </div>
+
+          <aside class="hero-side">
+            <div class="quick-card">
+              <strong>Proveedor fijo en hilo</strong>
+              <p>La orden de hilo mantiene siempre a TEXTILES BYCEL,S.A. y aplica la lógica TH / THX automáticamente.</p>
+            </div>
+            <div class="quick-card">
+              <strong>Mobilon por proveedor</strong>
+              <p>El precio cambia según JCA o SUMINISTROS ARYEL y cada estilo se redondea en múltiplos de 1,000.</p>
+            </div>
+          </aside>
         </div>
       </section>
 
@@ -47,12 +64,12 @@
           </div>
           <div class="nav-card__body">
             <h2 class="nav-card__title">Hilo</h2>
-            <p class="nav-card__text">Compra de hilo con lógica TH / THX, mínimo automático, varios estilos por orden y vista previa por estilo.</p>
+            <p class="nav-card__text">Orden de compra con distribución 70 / 30, mínimo automático y varios estilos en la misma hoja.</p>
           </div>
           <div class="nav-card__chips">
             <span>TH</span>
             <span>THX</span>
-            <span>Excel</span>
+            <span>Varios estilos</span>
           </div>
         </a>
 
@@ -63,12 +80,12 @@
           </div>
           <div class="nav-card__body">
             <h2 class="nav-card__title">Mobilon</h2>
-            <p class="nav-card__text">Orden de compra basada en plantilla, con proveedor seleccionable, precio por yarda y redondeo automático a múltiplos de 1,000.</p>
+            <p class="nav-card__text">Generador de orden con varios estilos, imagen por estilo y monto calculado por proveedor.</p>
           </div>
           <div class="nav-card__chips">
-            <span>Plantilla</span>
-            <span>1,000+</span>
-            <span>Excel</span>
+            <span>JCA</span>
+            <span>SUMINISTROS ARYEL</span>
+            <span>Múltiplos de 1,000</span>
           </div>
         </a>
       </section>
@@ -76,5 +93,6 @@
   </main>
 
   <script src="../shared/home.js"></script>
+  <script src="../shared/theme.js"></script>
 </body>
 </html>

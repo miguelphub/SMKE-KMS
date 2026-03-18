@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SMIKE | Scotch</title>
+  <title>KMS Apparel | Scotch</title>
+  <script>document.documentElement.dataset.theme = localStorage.getItem("kms-theme") || "light";</script>
   <link rel="stylesheet" href="../shared/theme.css" />
   <link rel="stylesheet" href="../shared/forms.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -16,6 +17,9 @@
     <div class="bg-orb orb-b"></div>
     <div class="bg-orb orb-c"></div>
   </div>
+  <button class="theme-toggle" type="button" data-theme-toggle aria-label="Cambiar a modo oscuro">
+    <i class="fa-solid fa-moon"></i><span data-theme-label>Modo oscuro</span>
+  </button>
 
   <main class="page-shell tool-shell">
     <a href="inicio.html" class="back-button"><i class="fa-solid fa-arrow-left"></i> Volver a calculadoras</a>
@@ -50,5 +54,6 @@
   </main>
 
   <script src="js/scotch.js"></script>
+  <script src="../shared/theme.js"></script>
 </body>
 </html>

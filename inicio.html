@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SMIKE | Panel principal</title>
+  <title>KMS Apparel | Inicio</title>
+  <script>document.documentElement.dataset.theme = localStorage.getItem("kms-theme") || "light";</script>
   <link rel="stylesheet" href="shared/theme.css" />
   <link rel="stylesheet" href="shared/home.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -18,98 +19,114 @@
     <div class="bg-particles" id="bgParticles"></div>
   </div>
 
+  <button class="theme-toggle" type="button" data-theme-toggle aria-label="Cambiar a modo oscuro">
+    <i class="fa-solid fa-moon"></i><span data-theme-label>Modo oscuro</span>
+  </button>
+
   <main class="page-shell centered-shell">
-    <div class="dashboard-shell">
-      <section class="glass-panel dashboard-hero">
-        <div class="panel-inner hero-intro">
-          <span class="eyebrow-pill"><i class="fa-solid fa-cubes-stacked"></i> Centro de herramientas</span>
-          <div class="dashboard-copy">
-            <h1 class="section-heading">SMIKE</h1>
-            <p class="section-copy">
-              Todo el proyecto quedó con una línea visual uniforme: fondos futuristas, tarjetas limpias,
-              animaciones suaves y mejor adaptación para escritorio, tablet y móvil.
-            </p>
+    <div class="landing-shell">
+      <section class="glass-panel landing-hero">
+        <div class="landing-hero__grid">
+          <div class="landing-copy">
+            <span class="eyebrow-pill"><i class="fa-solid fa-briefcase"></i> Plataforma interna de trabajo</span>
+            <div class="brand-row">
+              <img src="shared/logo-kms.png" alt="KMS Apparel" class="brand-mark" />
+              <div>
+                <h1 class="section-heading">KMS Apparel Workspace</h1>
+                <p class="section-copy">Una sola entrada para compras, accesorios y calculadoras. La interfaz fue reestructurada para verse más ejecutiva, clara y fácil de enseñar dentro de la empresa.</p>
+              </div>
+            </div>
+
+            <div class="landing-points">
+              <span><i class="fa-solid fa-layer-group"></i> Flujos separados</span>
+              <span><i class="fa-solid fa-file-excel"></i> Excels listos</span>
+              <span><i class="fa-solid fa-moon"></i> Modo oscuro global</span>
+            </div>
+
+            <div class="landing-actions">
+              <a class="btn-primary" href="costura/inicio.html">Entrar a Costura</a>
+              <a class="btn-secondary" href="Accesorios/index.html">Ir a Accesorios</a>
+            </div>
           </div>
 
-          <div class="hero-meta">
-            <span class="meta-chip"><i class="fa-solid fa-wand-magic-sparkles"></i> Estilo unificado</span>
-            <span class="meta-chip"><i class="fa-solid fa-mobile-screen-button"></i> Responsive real</span>
-            <span class="meta-chip"><i class="fa-solid fa-bolt"></i> Navegación más clara</span>
-          </div>
+          <aside class="landing-side">
+            <div class="side-stack">
+              <h3>Cómo está organizado</h3>
+              <p>Cada área quedó separada para que compras, cálculos y accesorios no se mezclen. Eso vuelve la captura más rápida y reduce errores al generar archivos.</p>
+              <div class="side-list">
+                <div><strong>Costura</strong><span>Hilo TH / THX y Mobilon con sus plantillas.</span></div>
+                <div><strong>Accesorios</strong><span>Transfer, Size Strip, Color Tag y Hang Tag.</span></div>
+                <div><strong>Calculadoras</strong><span>Herramientas rápidas sin alterar compras.</span></div>
+              </div>
+            </div>
+            <div class="quick-note"><i class="fa-solid fa-circle-info"></i> El tema claro u oscuro se mantiene activo aunque cambies de sección.</div>
+          </aside>
         </div>
       </section>
 
-      <section class="dashboard-grid" aria-label="Módulos principales">
-        <a class="nav-card accent-blue" href="costura/inicio.html">
-          <div class="nav-card__head">
-            <span class="nav-card__icon"><i class="fa-solid fa-scissors"></i></span>
-            <span class="nav-card__arrow"><i class="fa-solid fa-arrow-right"></i></span>
+      <section class="landing-modules" aria-label="Módulos principales">
+        <a class="module-card" href="costura/inicio.html">
+          <div class="module-card__head">
+            <span class="module-icon"><i class="fa-solid fa-scissors"></i></span>
+            <span class="module-arrow"><i class="fa-solid fa-arrow-right"></i></span>
           </div>
-          <div class="nav-card__body">
-            <h2 class="nav-card__title">Costura</h2>
-            <p class="nav-card__text">Acceso a las compras de Costura. Por ahora ya está activa la compra de hilo y queda preparada la entrada para futuros módulos como Mobilon.</p>
+          <div class="module-card__body">
+            <h2>Costura</h2>
+            <p>Generadores de compra para hilo y Mobilon, con lógica automática, varios estilos y plantillas listas para descargar.</p>
           </div>
-          <div class="nav-card__chips">
-            <span>Producción</span>
-            <span>TH / THX</span>
-            <span>Varios estilos</span>
+          <div class="module-card__foot nav-card__chips">
+            <span>Hilo</span><span>Mobilon</span><span>Excel</span>
           </div>
         </a>
 
-        <a class="nav-card accent-cyan" href="Accesorios/index.html">
-          <div class="nav-card__head">
-            <span class="nav-card__icon"><i class="fa-solid fa-tags"></i></span>
-            <span class="nav-card__arrow"><i class="fa-solid fa-arrow-right"></i></span>
+        <a class="module-card" href="Accesorios/index.html">
+          <div class="module-card__head">
+            <span class="module-icon"><i class="fa-solid fa-tags"></i></span>
+            <span class="module-arrow"><i class="fa-solid fa-arrow-right"></i></span>
           </div>
-          <div class="nav-card__body">
-            <h2 class="nav-card__title">Accesorios</h2>
-            <p class="nav-card__text">Genera órdenes y Excels de Heat Transfer, Size Strip, Color Tag y Hang Tag en una sola zona.</p>
+          <div class="module-card__body">
+            <h2>Accesorios</h2>
+            <p>Órdenes de compra para Heat Transfer, Size Strip, Color Tag y Hang Tag con múltiples estilos dentro del mismo archivo.</p>
           </div>
-          <div class="nav-card__chips">
-            <span>Excel</span>
-            <span>Tags</span>
-            <span>Plantillas</span>
+          <div class="module-card__foot nav-card__chips">
+            <span>Transfer</span><span>Tags</span><span>Tallas</span>
           </div>
         </a>
 
-        <article class="nav-card nav-card--static accent-pink">
-          <div class="nav-card__head">
-            <span class="nav-card__icon"><i class="fa-solid fa-box-open"></i></span>
-            <span class="nav-card__arrow"><i class="fa-solid fa-hourglass-half"></i></span>
+        <article class="module-card nav-card--static">
+          <div class="module-card__head">
+            <span class="module-icon"><i class="fa-solid fa-box-open"></i></span>
+            <span class="module-arrow"><i class="fa-solid fa-hourglass-half"></i></span>
           </div>
-          <div class="nav-card__body">
-            <h2 class="nav-card__title">Empaque</h2>
-            <p class="nav-card__text">Por ahora esta sección queda en pausa. Todavía no lleva módulos porque aún no me has pasado la plantilla final.</p>
+          <div class="module-card__body">
+            <h2>Empaque</h2>
+            <p>La sección queda reservada para la siguiente plantilla. Por ahora se mantiene desactivada para no confundir el flujo principal.</p>
           </div>
-          <div class="nav-card__chips">
-            <span>Próximamente</span>
-          </div>
+          <div class="module-card__foot nav-card__chips"><span>En preparación</span></div>
         </article>
 
-        <a class="nav-card accent-mix" href="calculadora/inicio.html">
-          <div class="nav-card__head">
-            <span class="nav-card__icon"><i class="fa-solid fa-calculator"></i></span>
-            <span class="nav-card__arrow"><i class="fa-solid fa-arrow-right"></i></span>
+        <a class="module-card" href="calculadora/inicio.html">
+          <div class="module-card__head">
+            <span class="module-icon"><i class="fa-solid fa-calculator"></i></span>
+            <span class="module-arrow"><i class="fa-solid fa-arrow-right"></i></span>
           </div>
-          <div class="nav-card__body">
-            <h2 class="nav-card__title">Calculadoras</h2>
-            <p class="nav-card__text">Panel con Hilo, Mobilon, Scotch y Sellador, todos con la misma presentación visual.</p>
+          <div class="module-card__body">
+            <h2>Calculadoras</h2>
+            <p>Herramientas rápidas para consumo de hilo, Mobilon, Scotch y Sellador sin mezclar la parte operativa con compras.</p>
           </div>
-          <div class="nav-card__chips">
-            <span>Hilo</span>
-            <span>Mobilon</span>
-            <span>Scotch</span>
+          <div class="module-card__foot nav-card__chips">
+            <span>Consumo</span><span>Scotch</span><span>Sellador</span>
           </div>
         </a>
       </section>
 
       <section class="dashboard-note">
-        <strong>Detalle importante:</strong> la compra de hilo ya quedó separada dentro de <strong>Costura</strong>,
-        mientras que la calculadora de consumo de hilo sigue viviendo en <strong>Calculadoras</strong>. Menos mezcla rara, más orden.
+        <strong>Consejo de uso:</strong> activa el modo que prefieras desde el botón superior. El sistema recordará tu elección en todas las páginas hasta que vuelvas a cambiarla.
       </section>
     </div>
   </main>
 
   <script src="shared/home.js"></script>
+  <script src="shared/theme.js"></script>
 </body>
 </html>

@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SMIKE | Costura · Compra de hilo</title>
+  <title>KMS Apparel | Costura · Compra de hilo</title>
+  <script>document.documentElement.dataset.theme = localStorage.getItem("kms-theme") || "light";</script>
   <link rel="stylesheet" href="../shared/theme.css" />
   <link rel="stylesheet" href="../shared/produccion.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -16,6 +17,9 @@
     <div class="bg-orb orb-b"></div>
     <div class="bg-orb orb-c"></div>
   </div>
+  <button class="theme-toggle" type="button" data-theme-toggle aria-label="Cambiar a modo oscuro">
+    <i class="fa-solid fa-moon"></i><span data-theme-label>Modo oscuro</span>
+  </button>
 
   <main class="page-shell prod-shell">
     <a href="inicio.html" class="back-button"><i class="fa-solid fa-arrow-left"></i> Volver a Costura</a>
@@ -28,7 +32,7 @@
           <p class="section-copy">
             Esta sección arma la orden de compra de hilo con varios estilos dentro de una misma hoja, reparte
             automáticamente el 70% para <strong>TEX 27</strong> y el 30% para <strong>40/2</strong>, y aplica la lógica
-            del mínimo para que el Excel no se ponga creativo a las 3 de la mañana.
+            del mínimo para generar el archivo correcto según la regla de compra.
           </p>
 
           <div class="hero-tags">
@@ -89,7 +93,7 @@
         <label class="styles-count-box">
           <span>Cantidad de estilos</span>
           <input id="qtyStyles" type="number" min="1" max="20" step="1" value="1" placeholder="1" />
-          <small>Empieza en 1 por defecto. Puedes borrarlo para escribir otro número sin que te lo peleen los duendes del input.</small>
+          <small>Empieza en 1 por defecto. Puedes ajustar el número según la cantidad de estilos que necesites incluir en la orden.</small>
         </label>
       </div>
 
@@ -114,5 +118,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/exceljs/dist/exceljs.min.js"></script>
   <script src="js/produccion.js"></script>
+  <script src="../shared/theme.js"></script>
 </body>
 </html>

@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SMIKE | Sellador</title>
+  <title>KMS Apparel | Sellador</title>
+  <script>document.documentElement.dataset.theme = localStorage.getItem("kms-theme") || "light";</script>
   <link rel="stylesheet" href="../shared/theme.css" />
   <link rel="stylesheet" href="../shared/forms.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -16,6 +17,9 @@
     <div class="bg-orb orb-b"></div>
     <div class="bg-orb orb-c"></div>
   </div>
+  <button class="theme-toggle" type="button" data-theme-toggle aria-label="Cambiar a modo oscuro">
+    <i class="fa-solid fa-moon"></i><span data-theme-label>Modo oscuro</span>
+  </button>
 
   <main class="page-shell tool-shell">
     <a href="inicio.html" class="back-button"><i class="fa-solid fa-arrow-left"></i> Volver a calculadoras</a>
@@ -25,53 +29,90 @@
         <span class="eyebrow-pill"><i class="fa-solid fa-box"></i> Cálculo de Sellador</span>
         <div>
           <h1 class="section-heading">Sellador</h1>
-          <p class="section-copy">Completa los datos de empaque y obtén el número de cajas y selladores necesarios según la forma de sellado.</p>
+          <p class="section-copy">Elige si vas a calcular por datos de empaque o si ya tienes el consumo. El resultado mantiene la misma lógica de cajas y selladores requeridos.</p>
         </div>
       </header>
 
       <div class="tool-grid">
-        <div class="field">
-          <label for="piezas">Cantidad de pcs</label>
-          <input type="number" id="piezas" inputmode="numeric" />
-        </div>
-
-        <div class="field">
-          <label for="porCaja">Pcs por caja</label>
-          <input type="number" id="porCaja" inputmode="numeric" />
-        </div>
-
-        <div class="field">
-          <label for="largo">Largo de la caja (pulgadas)</label>
-          <input type="number" id="largo" inputmode="decimal" />
-        </div>
-
-        <div class="field">
-          <label for="ancho">Ancho de la caja (pulgadas)</label>
-          <input type="number" id="ancho" inputmode="decimal" />
-        </div>
-
-        <div class="field">
-          <label for="forma">Sellado de caja</label>
-          <select id="forma">
-            <option value="Normal">Normal</option>
-            <option value="H">H</option>
+        <div class="field full">
+          <label for="modoCalculo">Modo de captura</label>
+          <select id="modoCalculo">
+            <option value="empaque">Datos por empaque</option>
+            <option value="consumo">Ya tengo consumo</option>
           </select>
         </div>
 
-        <div class="field">
-          <label for="cajas">Total de cajas</label>
-          <input type="number" id="cajas" readonly />
+        <div id="modoEmpaque" class="mode-block">
+          <div class="sub-grid">
+            <div class="field">
+              <label for="piezas">Cantidad de pcs</label>
+              <input type="number" id="piezas" inputmode="numeric" min="0" />
+            </div>
+
+            <div class="field">
+              <label for="porCaja">Pcs por caja</label>
+              <input type="number" id="porCaja" inputmode="numeric" min="0" />
+            </div>
+
+            <div class="field">
+              <label for="largo">Largo de la caja (pulgadas)</label>
+              <input type="number" id="largo" inputmode="decimal" min="0" step="any" />
+            </div>
+
+            <div class="field">
+              <label for="ancho">Ancho de la caja (pulgadas)</label>
+              <input type="number" id="ancho" inputmode="decimal" min="0" step="any" />
+            </div>
+
+            <div class="field">
+              <label for="formaEmpaque">Sellado de caja</label>
+              <select id="formaEmpaque">
+                <option value="Normal">Normal</option>
+                <option value="H">H</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="cajasCalculadas">Total de cajas</label>
+              <input type="number" id="cajasCalculadas" readonly />
+            </div>
+          </div>
         </div>
 
-        <div class="actions">
-          <button type="button" onclick="calcularSelladores()">Calcular</button>
+        <div id="modoConsumo" class="mode-block hidden">
+          <div class="sub-grid">
+            <div class="field">
+              <label for="cajasManual">Cantidad de cajas</label>
+              <input type="number" id="cajasManual" inputmode="numeric" min="0" />
+            </div>
+
+            <div class="field">
+              <label for="consumoManual">Consumo por caja (m)</label>
+              <input type="number" id="consumoManual" inputmode="decimal" min="0" step="any" />
+            </div>
+
+            <div class="field">
+              <label for="formaConsumo">Sellado de caja</label>
+              <select id="formaConsumo">
+                <option value="Normal">Normal</option>
+                <option value="H">H</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="helper-banner">
+            <i class="fa-solid fa-circle-info"></i>
+            <div>Ingresa directamente la cantidad de cajas y el consumo por caja en metros. El sistema calculará los selladores requeridos con la misma lógica de redondeo de siempre.</div>
+          </div>
         </div>
+
       </div>
 
-      <div class="result-panel" id="resultado"></div>
+      <div class="result-panel sellador-results" id="resultado"></div>
     </section>
   </main>
 
   <script src="js/sellador.js"></script>
+  <script src="../shared/theme.js"></script>
 </body>
 </html>

@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SMIKE | Accesorios</title>
+  <title>KMS Apparel | Accesorios</title>
+  <script>document.documentElement.dataset.theme = localStorage.getItem("kms-theme") || "light";</script>
   <link rel="stylesheet" href="../shared/theme.css" />
   <link rel="stylesheet" href="../shared/accessories.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -16,6 +17,9 @@
     <div class="bg-orb orb-b"></div>
     <div class="bg-orb orb-c"></div>
   </div>
+  <button class="theme-toggle" type="button" data-theme-toggle aria-label="Cambiar a modo oscuro">
+    <i class="fa-solid fa-moon"></i><span data-theme-label>Modo oscuro</span>
+  </button>
 
   <main class="wrap">
     <a href="../inicio.html" class="back-button top-back"><i class="fa-solid fa-arrow-left"></i> Volver al inicio</a>
@@ -26,7 +30,7 @@
         <h1>Órdenes de compra</h1>
         <p>
           Llena las casillas, genera tus archivos y descarga los Excels listos. El diseño ahora sigue la misma línea
-          visual del cálculo de hilo para que todo se sienta parte del mismo sistema y no un zoológico de estilos.
+          visual del cálculo de hilo para que todo se sienta parte del mismo sistema para mantener una presentación uniforme.
         </p>
 
         <div class="hero-chips">
@@ -120,12 +124,13 @@
       </div>
       <p class="hint">
         Color Tag y Hang Tag ahora aceptan cantidad manual por estilo. Si eliges varios tipos a la vez,
-        tu navegador puede pedir permiso para múltiples descargas.
+        tu navegador puede pedir permiso para descargar varios archivos.
       </p>
     </section>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/exceljs/dist/exceljs.min.js"></script>
   <script src="JS/kms.js"></script>
+  <script src="../shared/theme.js"></script>
 </body>
 </html>
